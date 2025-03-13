@@ -34,8 +34,10 @@ public class ScriptHandler {
                     break;
                 case JAVASCRIPT:
                     output = executeJavaScript(codeScript);
+                    break;
                 default:
                     output =  executeJava(codeScript);
+                    break;
             }
             long endTime = System.currentTimeMillis();
             return ExecutionResult.success(output, endTime - startTime);
