@@ -1,0 +1,3 @@
+selenium:
+  browser: chrome  # 支持 chrome/firefox/edge
+  headless: true   # 无头模式节省资源
