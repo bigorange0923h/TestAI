@@ -19,7 +19,10 @@
             <artifactId>selenium-java</artifactId>
             <version>4.1.4</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId> <!-- WebClient 核心依赖 -->
+        </dependency>
         <!-- ChromeDriver 自动管理（推荐） -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
