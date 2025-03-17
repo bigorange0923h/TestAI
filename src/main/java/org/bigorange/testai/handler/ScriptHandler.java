@@ -56,6 +56,11 @@ public class ScriptHandler {
         return "暂不支持此脚本";
     }
 
+    public String testCode = "public class HelloWorld {\n" +
+            "    public static void main(String[] args) {\n" +
+            "        System.out.println(\"Hello, World!\");\n" +
+            "    }\n" +
+            "}";
 
     // Java动态编译执行
     private String executeJava(String code) {
