@@ -31,7 +31,10 @@ public class SeleniumHandler {
             new WebDriverWait(driver, Duration.ofSeconds(10).toMillis())
                     .until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete';"));
             return driver.getPageSource();
-        } finally {
+        }catch (Exception e){
+            e.printStackTrace();
+            return "";
+        }finally {
             driver.quit(); // 确保释放资源
         }
     }
@@ -42,4 +45,5 @@ public class SeleniumHandler {
         if (headless) options.addArguments("--headless");
         return new ChromeDriver(options);
     }
+
 }
