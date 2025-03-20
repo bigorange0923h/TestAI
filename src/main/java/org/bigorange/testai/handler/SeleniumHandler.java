@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.time.Duration;
 
 /**
@@ -19,22 +20,25 @@ import java.time.Duration;
 public class SeleniumHandler {
     @Value("${selenium.browser}")
     private String browserType;
-
     @Value("${selenium.headless}")
     private boolean headless;
+    @Value("${selenium.chromedriver.path}")
+    private String chromeDriverPath;
 
-    public String fetchHtml(String url) {
-        WebDriver driver = createDriver();
+    public String fetchHtml(String url) throws IOException {
+        // 1. 设置 ChromeDriver 路径
+        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
+
+        // WebDriver driver = createDriver();
+        // 2. 启动 Chrome 浏览器
+        WebDriver driver = new ChromeDriver();
         try {
             driver.get(url);
             // 显式等待动态内容加载
             new WebDriverWait(driver, Duration.ofSeconds(10).toMillis())
                     .until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete';"));
             return driver.getPageSource();
-        }catch (Exception e){
-            e.printStackTrace();
-            return "";
-        }finally {
+        } finally {
             driver.quit(); // 确保释放资源
         }
     }
